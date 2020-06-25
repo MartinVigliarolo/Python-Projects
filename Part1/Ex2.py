@@ -28,7 +28,7 @@ for par in pares:
                 esPrimo = False
         if esPrimo:
             print(num)
-    print("\n")
+    print("")
               
     
     
