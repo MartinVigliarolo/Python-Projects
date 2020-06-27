@@ -21,6 +21,33 @@ import math
 def getDigits(ent):
     return math.floor(math.log(int(ent),10)+1)
 
+def getCorrectZeros(digits):
+    init = 10
+    for i in range(digits-1):
+        init = init*10
+    return init
+
+def buscarPalindromo(ent,digits):
+    if int(digits) == 1:
+        return ent
+    else:
+        digitoMenor = int(ent) % 10
+        if int(digits) == 2:
+            digitoMayor = math.floor(int(ent)/10)
+            if digitoMenor > digitoMayor:
+                return str(digitoMayor + 1) + str(digitoMayor + 1)
+            else:
+                return str(digitoMayor) + str(digitoMayor)
+        else:
+            unoConCerosCorrectos = getCorrectZeros(digits-1)
+            digitoMayor = math.floor(int(ent)/(unoConCerosCorrectos))
+            if digitoMayor < digitoMenor:
+                ent = int(ent) + 10 - (digitoMenor - digitoMayor)                
+            ent =  int(ent) - digitoMayor*unoConCerosCorrectos
+            ent = math.floor(int(ent)/10)
+            return str(digitoMayor) + str(buscarPalindromo(ent,digits-2)) + str(digitoMayor)
+    
+
 t = input()
 entradas = []
 
@@ -29,16 +56,4 @@ for i in range(int(t)):
 
 for ent in entradas:
     digits = getDigits(ent)
-    ret = ''
-    if digits == 1:
-        print(ent)
-    else:
-        while digits > 1:
-            digitoMayor = math.floor(int(ent)/10*(digits-1))
-            # digitoMenor = 
-            ret = str(digitoMayor) + ret + str(digitoMayor)
-            digits = digits - 2
-        print(ret)
-
-
-
+    print(buscarPalindromo(ent,digits))
