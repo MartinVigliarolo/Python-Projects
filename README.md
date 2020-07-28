@@ -1,6 +1,6 @@
 # Python-Projects
 
-Codigo muy basico y todo desprolijo de un juego de Ta-Te-Ti
+Codigo muy basico y un juego de Ta-Te-Ti
 
 # Carpeta EasyCompProgramming
 
